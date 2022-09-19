@@ -6,12 +6,11 @@
 /*   By: dan <dan@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 20:12:36 by dan               #+#    #+#             */
-/*   Updated: 2022/09/16 20:45:26 by dan              ###   ########.fr       */
+/*   Updated: 2022/09/17 10:25:09 by dan              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-//#include <stdio.h>
 
 struct trim
 {
@@ -19,7 +18,6 @@ struct trim
     int len;
 };
 
-//Regarde si le charactère fait partie de set, retourne 1 si succès
 int check_if_set(char s1, char const *set)
 {
     int i;
@@ -41,10 +39,8 @@ struct trim final_length(char const *s1, char const *set)
     i = -1;
     a = 0;
     length = 0;
-    //loop jusque trouver charactère alpha et tant que partie de set
     while(s1[++i] && check_if_set(s1[i], set) == 1)
         a++;
-    //loop toutes les chaines de caractères jusque set
     while(s1[i] && check_if_set(s1[i], set) == 0)
     {
         length++;
@@ -72,9 +68,3 @@ char *ft_strtrim(char const *s1, char const *set)
     str[i] = '\0';
     return(str);
 }
-/*
-int main(void)
-{
-    printf("%s", ft_strtrim("aaa1234aaa", "a"));
-    return (0);
-}*/
