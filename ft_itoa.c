@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
+//#include <stdio.h>
 
 int len_int(int n)
 {
@@ -23,12 +23,29 @@ int len_int(int n)
         n *= -1;
         len++;
     }
-    while (n > 0)
-    {
-        n /= 10;
+    while ((n /= 10) > 0)
         len++;
-    }
+    len++;
     return (len);
+}
+
+char *ft_itoa2(int n, char *str, int i)
+{
+    if (n < 0)
+    {
+        str[0] = '-';
+        n *= -1;
+    }
+    str[i] = '\0';
+    i--;
+    while (n / 10 > 0)
+    {
+        str[i] = n % 10 + 48;
+        n /= 10;
+        i--;
+    }
+    str[i] = n % 10 + 48;
+    return (str);
 }
 
 char *ft_itoa(int n)
@@ -36,26 +53,24 @@ char *ft_itoa(int n)
     char *str;
     int i;
 
-    i = 0;
+    i = len_int(n);
+    if (n == (-2147483648))
+    {
+        str = (char*)malloc(12);
+        if (!str)
+            return (NULL);
+        ft_memcpy(str, "-2147483648", 12);
+        return (str);
+    }
     str = (char*)malloc(len_int(n) + 1);
-    if (n < 0)
-    {
-        str[0] = '-';
-        n *= -1;
-        i++;
-    }
-    while (i < 4 - 2)
-    {
-        str[i] = (n / (4 - i - 1)) + '0';
-        i++;
-    }
-    //str[i] = n % 10 + 48;
-    //str[i + 1] ='\0';
+    if (!str)
+        return (NULL);
+    str = ft_itoa2(n, str, i);
     return (str);
 }
-
+/*
 int main (void)
 {
-    printf("%s", ft_itoa(2000));
+    printf("%s", ft_itoa(-2147483648));
     return (0);
-}
+}*/
