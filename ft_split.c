@@ -6,117 +6,91 @@
 /*   By: dan <dan@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 10:20:46 by dan               #+#    #+#             */
-/*   Updated: 2022/09/25 11:35:32 by dan              ###   ########.fr       */
+/*   Updated: 2022/09/27 12:29:51 by dan              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//protéger les mallocs ! Calloc
-
-#include "libft.h"
 //#include <stdio.h>
+#include "libft.h"
 #include <stdlib.h>
 
-struct ft_split
+int number_elements(char const *s, char c)
 {
-    int number_elements;
-    int *start_of_elements;
-};
-
-
-struct ft_split number_elements(char const *s, char c)
-{
-    struct ft_split data;
     int i;
     int elements;
 
+    i = 0;
     elements = 0;
-    i = -1;
-    data.start_of_elements = malloc(sizeof(int) * 10000);
-    if (!data.start_of_elements)
-        return (data);
-    while(s[++i])
+    while(s[i])
     {
         while (s[i] && s[i] == c)
             i++;
         if (s[i] && s[i] != c)
         {
-            data.start_of_elements[elements] = i;
             elements++;
             while (s[i] && s[i] != c)
                 i++;
         }
     }
-    data.number_elements = elements;
-    return(data);
+    return (elements);
 }
 
-int *size_sub_elements(char const *s, char c)
+int start_of_element(int start, char const *s, char c)
 {
     int i;
-    int elements;
-    int length;
-    int *tab;
 
-    tab = malloc(sizeof(int) * 10000);
-    if (!tab)
-        return (NULL);
-    i = -1;
-    elements = 0;
-    while(s[++i])
-    {
-        if (s[i] && s[i] != c)
-        {
-            length = 0;
-            while (s[++i] && s[i] != c)
-                length++;
-            tab[elements] = length;
-            elements++;
-        }
-    }
-    return(tab);
+    i = start;
+    while (s[i] && s[i] == c)
+        i++;
+    return (i);
+}
+
+int strlen_to_sep(int start,char const *s, char c)
+{
+    int i;
+
+    i = start;
+    while (s[i] && s[i] != c)
+        i++;
+    i = i - start;
+    return (i);
 }
 
 char **ft_split(char const *s, char c)
 {
-    char **arr;
-    char c_array[2];
-    int *tab;
     int i;
-    struct ft_split data1;
-
-    c_array[0] = c;
-    c_array[1] = '\0';
+    int start;
+    char **arr;
+    char c_array[2] = {c,'\0'};
+    
     i = -1;
-    data1 = number_elements(s, c);
-    tab = size_sub_elements(s, c);
-    arr = (char**)malloc((data1.number_elements + 1) * sizeof(char*));
+    start = 0;
+    arr = (char**)ft_calloc((number_elements(s, c) + 1), sizeof(char *));
     if (!arr)
         return (NULL);
-    while (++i < data1.number_elements)
-        arr[i] = (char*) ft_calloc(tab[i] + 1, sizeof(char));
-    arr[data1.number_elements] = (char*) malloc(1);
-    arr[data1.number_elements] = '\0';
-    i = -1;
-    while(++i < data1.number_elements)
-        arr[i] = ft_strtrim((char*)s + data1.start_of_elements[i], c_array);
-    i = -1;
-    /*
-    while (arr[++i])
+    while (++i < number_elements(s,c))
     {
-        //printf("Emplacement : %d ", i);
-        //printf("%s\n\n", arr[i]);
-        free(arr[i]);
-    }*/
-    free(data1.start_of_elements);
-    free(tab);
+        start = start_of_element(start, s, c);;
+        arr[i] = ft_strtrim(s + start, c_array);
+        if (!arr[i])
+            return (NULL);
+        start += strlen_to_sep(start, s, c);
+    }
+    arr[i] = NULL;
     return (arr);
 }
 /*
 int main(void)
 {
     char **arr;
+    int i = 0;
     arr = ft_split("  tripouille  42  ", ' ');
-    //free (str);
+    while (arr[i])
+    {
+        printf("%s\n", arr[i]);
+        free(arr[i]);
+        i++;
+    }
     free(arr);
     return (0);
 }*/
