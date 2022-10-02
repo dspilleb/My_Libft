@@ -6,14 +6,14 @@
 /*   By: dan <dan@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 19:19:29 by dan               #+#    #+#             */
-/*   Updated: 2022/09/11 19:19:30 by dan              ###   ########.fr       */
+/*   Updated: 2022/10/01 18:43:02 by dan              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void    ft_bzero(void *str, int n)
+void	ft_bzero(void *str, int n)
 {
-    while(--n >= 0)
-        *((char*)str + n) = '\0';
+	while (--n >= 0)
+		*((char *)str + n) = '\0';
 }

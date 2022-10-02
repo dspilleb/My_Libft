@@ -6,17 +6,17 @@
 /*   By: dan <dan@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 14:58:12 by dan               #+#    #+#             */
-/*   Updated: 2022/09/27 15:15:35 by dan              ###   ########.fr       */
+/*   Updated: 2022/10/01 20:48:21 by dan              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_striteri(char *s, void (*f)(unsigned int, char*))
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-    unsigned int i;
+	unsigned int	i;
 
-    i = -1;
-    while (s[++i])
-        (*f)(i, &s[i]);
+	i = -1;
+	while (s[++i])
+		(*f)(i, &s[i]);
 }

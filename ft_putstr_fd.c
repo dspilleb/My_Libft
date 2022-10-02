@@ -6,18 +6,18 @@
 /*   By: dan <dan@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 15:19:37 by dan               #+#    #+#             */
-/*   Updated: 2022/09/27 15:21:25 by dan              ###   ########.fr       */
+/*   Updated: 2022/10/01 20:47:40 by dan              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <unistd.h>
 
-void ft_putstr_fd(char *s, int fd)
+void	ft_putstr_fd(char *s, int fd)
 {
-    int i;
+	int	i;
 
-    i = -1;
-    while (s[++i])
-        write(fd, &s[i], 1);
+	i = -1;
+	while (s[++i])
+		write(fd, &s[i], 1);
 }

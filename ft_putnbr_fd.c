@@ -6,16 +6,16 @@
 /*   By: dan <dan@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 15:24:05 by dan               #+#    #+#             */
-/*   Updated: 2022/09/27 15:27:31 by dan              ###   ########.fr       */
+/*   Updated: 2022/10/01 19:05:52 by dan              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <unistd.h>
 
-void ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
-    if (n < -2147483647)
+	if (n < -2147483647)
 	{
 		write(fd, "-2147483648", 11);
 	}
