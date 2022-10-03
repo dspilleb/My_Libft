@@ -6,7 +6,7 @@
 /*   By: dan <dan@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 13:34:06 by dan               #+#    #+#             */
-/*   Updated: 2022/10/01 20:40:03 by dan              ###   ########.fr       */
+/*   Updated: 2022/10/03 18:10:14 by dan              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ int	strmatch(const char *haystack, const char *needle, size_t len, int i)
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	size_t	i;
-	int		location;
-	int		a;
+	size_t		i;
+	int			location;
+	size_t		a;
 
 	i = 0;
 	a = 0;

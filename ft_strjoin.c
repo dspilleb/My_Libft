@@ -6,7 +6,7 @@
 /*   By: dan <dan@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 20:11:12 by dan               #+#    #+#             */
-/*   Updated: 2022/10/01 20:47:49 by dan              ###   ########.fr       */
+/*   Updated: 2022/10/03 18:10:40 by dan              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int		i;
-	int		end_s1;
-	char	*str;
+	size_t		i;
+	int			end_s1;
+	char		*str;
 
 	end_s1 = ft_strlen((char *)s1);
 	i = -1;

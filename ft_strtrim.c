@@ -6,7 +6,7 @@
 /*   By: dan <dan@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 20:12:36 by dan               #+#    #+#             */
-/*   Updated: 2022/10/01 20:43:27 by dan              ###   ########.fr       */
+/*   Updated: 2022/10/03 15:51:20 by dan              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	i = 0;
 	data = final_length(s1, set);
 	str = (char *)malloc(data.len + 1);
+	if (!str)
+		return (NULL);
 	while (i < data.len)
 	{
 		str[i] = s1[data.start + i];
