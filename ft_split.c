@@ -6,7 +6,7 @@
 /*   By: dan <dan@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 10:20:46 by dan               #+#    #+#             */
-/*   Updated: 2022/10/01 19:15:57 by dan              ###   ########.fr       */
+/*   Updated: 2022/10/03 19:29:36 by dan              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ char	**ft_split(char const *s, char c)
 	char	**arr;
 	char	c_array[2];
 
+	if (!s)
+		return (NULL);
 	c_array[0] = c;
 	c_array[1] = '\0';
 	i = -1;

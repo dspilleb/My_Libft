@@ -6,7 +6,7 @@
 /*   By: dan <dan@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 20:12:36 by dan               #+#    #+#             */
-/*   Updated: 2022/10/03 15:51:20 by dan              ###   ########.fr       */
+/*   Updated: 2022/10/03 19:29:22 by dan              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,10 @@ char	*ft_strtrim(char const *s1, char const *set)
 	struct s_trim	data;
 	int				i;
 
+	if (!s1)
+		return (NULL);
+	if (!set)
+		return ((char *)s1);
 	i = 0;
 	data = final_length(s1, set);
 	str = (char *)malloc(data.len + 1);
