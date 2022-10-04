@@ -6,7 +6,7 @@
 /*   By: dan <dan@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 20:12:36 by dan               #+#    #+#             */
-/*   Updated: 2022/10/04 11:11:02 by dan              ###   ########.fr       */
+/*   Updated: 2022/10/04 14:56:24 by dan              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,15 @@ int	len_trim(char const *s1, char const *set)
 	int	len;
 
 	len = 0;
-	i = -1;
-	while (check_if_set(s1[++i], set) == TRUE)
-		len++;
-	i--;
-	while (s1[++i])
+	i = 0;
+	while (check_if_set(s1[i], set) == TRUE)
+		i++;
+	while (s1[i])
+	{
 		if (check_if_last_set(&s1[i], set) == FALSE)
 			len++;
+		i++;
+	}
 	return (len);
 }
 
@@ -69,6 +71,7 @@ char	*copy(char *str, char const *s1, char const *set)
 		}
 		i++;
 	}
+	str[a] = '\0';
 	return (str);
 }
 
@@ -82,7 +85,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	if (!set)
 		return ((char *)s1);
 	len = len_trim(s1, set);
-	str = (char *)malloc(len);
+	str = (char *)malloc(len + 1);
 	if (!str)
 		return (0);
 	str = copy (str, s1, set);

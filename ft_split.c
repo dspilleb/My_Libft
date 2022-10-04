@@ -6,7 +6,7 @@
 /*   By: dan <dan@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 10:20:46 by dan               #+#    #+#             */
-/*   Updated: 2022/10/04 13:38:16 by dan              ###   ########.fr       */
+/*   Updated: 2022/10/04 14:48:05 by dan              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,10 @@ char	*copy(char const *s, int len)
 	int		i;
 
 	i = -1;
-	str = (char *)malloc(len);
-	while (++i < len)
+	str = (char *)malloc(len + 1);
+	while (++i < len && s[i])
 		str[i] = s[i];
+	str[i] = '\0';
 	return (str);
 }
 
