@@ -6,7 +6,7 @@
 /*   By: dan <dan@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 10:20:46 by dan               #+#    #+#             */
-/*   Updated: 2022/10/03 19:29:36 by dan              ###   ########.fr       */
+/*   Updated: 2022/10/04 13:38:16 by dan              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,26 @@ int	strlen_to_sep(int start, char const *s, char c)
 	return (i);
 }
 
+char	*copy(char const *s, int len)
+{
+	char	*str;
+	int		i;
+
+	i = -1;
+	str = (char *)malloc(len);
+	while (++i < len)
+		str[i] = s[i];
+	return (str);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	int		i;
 	int		start;
 	char	**arr;
-	char	c_array[2];
 
 	if (!s)
 		return (NULL);
-	c_array[0] = c;
-	c_array[1] = '\0';
 	i = -1;
 	start = 0;
 	arr = (char **)ft_calloc((number_elements(s, c) + 1), sizeof(char *));
@@ -74,7 +83,7 @@ char	**ft_split(char const *s, char c)
 	while (++i < number_elements(s, c))
 	{
 		start = start_of_element(start, s, c);
-		arr[i] = ft_strtrim(s + start, c_array);
+		arr[i] = copy(s + start, strlen_to_sep(start, s, c));
 		if (!arr[i])
 			return (NULL);
 		start += strlen_to_sep(start, s, c);

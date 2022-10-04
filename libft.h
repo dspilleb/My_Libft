@@ -6,12 +6,15 @@
 /*   By: dan <dan@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 20:44:41 by dan               #+#    #+#             */
-/*   Updated: 2022/10/03 18:44:39 by dan              ###   ########.fr       */
+/*   Updated: 2022/10/04 13:17:50 by dan              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
+# define TRUE 1
+# define FALSE 0
 
 # include <stddef.h>
 # include <stdlib.h>

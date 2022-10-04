@@ -6,17 +6,12 @@
 /*   By: dan <dan@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 20:12:36 by dan               #+#    #+#             */
-/*   Updated: 2022/10/03 19:29:22 by dan              ###   ########.fr       */
+/*   Updated: 2022/10/04 11:11:02 by dan              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-struct s_trim
-{
-	int	start;
-	int	len;
-};
+#include <stdlib.h>
 
 int	check_if_set(char s1, char const *set)
 {
@@ -25,52 +20,71 @@ int	check_if_set(char s1, char const *set)
 	i = -1;
 	while (set[++i])
 		if (s1 == set[i])
-			return (1);
-	return (0);
+			return (TRUE);
+	return (FALSE);
 }
 
-struct	s_trim	final_length(char const *s1, char const *set)
+int	check_if_last_set(char const *s1, char const *set)
 {
-	struct s_trim	data1;
-	int				i;
-	int				length;
-	int				a;
+	int	i;
 
 	i = -1;
+	while (s1[++i])
+		if (check_if_set(s1[i], set) != TRUE)
+			return (FALSE);
+	return (TRUE);
+}
+
+int	len_trim(char const *s1, char const *set)
+{
+	int	i;
+	int	len;
+
+	len = 0;
+	i = -1;
+	while (check_if_set(s1[++i], set) == TRUE)
+		len++;
+	i--;
+	while (s1[++i])
+		if (check_if_last_set(&s1[i], set) == FALSE)
+			len++;
+	return (len);
+}
+
+char	*copy(char *str, char const *s1, char const *set)
+{
+	int	i;
+	int	a;
+
 	a = 0;
-	length = 0;
-	while (s1[++i] && check_if_set(s1[i], set) == 1)
-		a++;
-	while (s1[i] && check_if_set(s1[i], set) == 0)
+	i = 0;
+	while (check_if_set(s1[i], set) == TRUE)
+		i++;
+	while (s1[i])
 	{
-		length++;
+		if (check_if_last_set(&s1[i], set) == FALSE)
+		{
+			str[a] = s1[i];
+			a++;
+		}
 		i++;
 	}
-	data1.start = a;
-	data1.len = length;
-	return (data1);
+	return (str);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char			*str;
-	struct s_trim	data;
-	int				i;
+	char	*str;
+	int		len;
 
 	if (!s1)
-		return (NULL);
+		return (0);
 	if (!set)
 		return ((char *)s1);
-	i = 0;
-	data = final_length(s1, set);
-	str = (char *)malloc(data.len + 1);
+	len = len_trim(s1, set);
+	str = (char *)malloc(len);
 	if (!str)
-		return (NULL);
-	while (i < data.len)
-	{
-		str[i] = s1[data.start + i];
-		i++;
-	}
-	str[i] = '\0';
+		return (0);
+	str = copy (str, s1, set);
 	return (str);
 }
