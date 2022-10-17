@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dan <dan@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 11:50:41 by dan               #+#    #+#             */
-/*   Updated: 2022/10/01 21:01:41 by dan              ###   ########.fr       */
+/*   Updated: 2022/10/16 15:41:43 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	len_int(int n)
+static int	len_int(int n)
 {
 	int	len;
 
@@ -32,7 +32,7 @@ int	len_int(int n)
 	return (len);
 }
 
-char	*ft_itoa2(int n, char *str, int i)
+static char	*ft_itoa2(int n, char *str, int i)
 {
 	if (n < 0)
 	{

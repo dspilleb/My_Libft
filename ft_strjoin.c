@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dan <dan@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 20:11:12 by dan               #+#    #+#             */
-/*   Updated: 2022/10/03 18:10:40 by dan              ###   ########.fr       */
+/*   Updated: 2022/10/16 20:15:08 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,24 @@
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	size_t		i;
-	int			end_s1;
+	size_t		end_s1;
+	size_t		end_s2;
 	char		*str;
 
-	end_s1 = ft_strlen((char *)s1);
-	i = -1;
-	str = (char *)malloc(ft_strlen((char *)s1) + ft_strlen((char *)s2) + 1);
-	ft_strlcpy(str, (char *)s1, (unsigned int)ft_strlen((char *)s1) + 1);
-	while (++i < ft_strlen((char *)s2))
+	i = 0;
+	if (!s1 || !s2)
+		return (NULL);
+	end_s1 = ft_strlen(s1);
+	end_s2 = ft_strlen(s2);
+	str = malloc(sizeof(char) * (end_s1 + end_s2 + 1));
+	if (!str)
+		return (NULL);
+	ft_strlcpy(str, s1, end_s1 + 1);
+	while (i < end_s2)
+	{
 		str[end_s1 + i] = s2[i];
+		i++;
+	}
 	str[end_s1 + i] = '\0';
 	return (str);
 }

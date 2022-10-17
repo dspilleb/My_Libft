@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dan <dan@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 20:12:36 by dan               #+#    #+#             */
-/*   Updated: 2022/10/04 14:56:24 by dan              ###   ########.fr       */
+/*   Updated: 2022/10/17 18:24:22 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-int	check_if_set(char s1, char const *set)
+static int	check_if_set(char s1, char const *set)
 {
 	int	i;
 
@@ -24,7 +23,7 @@ int	check_if_set(char s1, char const *set)
 	return (FALSE);
 }
 
-int	check_if_last_set(char const *s1, char const *set)
+static int	check_if_last_set(char const *s1, char const *set)
 {
 	int	i;
 
@@ -35,7 +34,7 @@ int	check_if_last_set(char const *s1, char const *set)
 	return (TRUE);
 }
 
-int	len_trim(char const *s1, char const *set)
+static int	len_trim(char const *s1, char const *set)
 {
 	int	i;
 	int	len;
@@ -53,7 +52,7 @@ int	len_trim(char const *s1, char const *set)
 	return (len);
 }
 
-char	*copy(char *str, char const *s1, char const *set)
+static char	*copy(char *str, char const *s1, char const *set)
 {
 	int	i;
 	int	a;

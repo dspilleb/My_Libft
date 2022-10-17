@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dan <dan@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 10:20:46 by dan               #+#    #+#             */
-/*   Updated: 2022/10/04 14:48:05 by dan              ###   ########.fr       */
+/*   Updated: 2022/10/16 15:42:19 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-int	number_elements(char const *s, char c)
+static int	number_elements(char const *s, char c)
 {
 	int	i;
 	int	elements;
@@ -34,34 +33,48 @@ int	number_elements(char const *s, char c)
 	return (elements);
 }
 
-int	start_of_element(int start, char const *s, char c)
+static int	start_of_element(int start, char const *s, char c)
 {
 	int	i;
 
 	i = start;
-	while (s[i] && s[i] == c)
-		i++;
+	if (s[i] == c)
+		while (s[i] && s[i] == c)
+			i++;
+	else
+	{
+		while (s[i] && s[i] != c)
+			i++;
+		while (s[i] && s[i] == c)
+			i++;
+	}
 	return (i);
 }
 
-int	strlen_to_sep(int start, char const *s, char c)
+static void	free_all(char **str)
 {
 	int	i;
 
-	i = start;
-	while (s[i] && s[i] != c)
-		i++;
-	i = i - start;
-	return (i);
+	i = -1;
+	while (str[++i])
+		free (str[i]);
+	free(str);
 }
 
-char	*copy(char const *s, int len)
+static char	*copy_string(char const *s, char c)
 {
 	char	*str;
 	int		i;
+	int		len;
 
+	len = 0;
+	i = -1;
+	while (s[++i] != c && s[i])
+		len++;
 	i = -1;
 	str = (char *)malloc(len + 1);
+	if (!str)
+		return (NULL);
 	while (++i < len && s[i])
 		str[i] = s[i];
 	str[i] = '\0';
@@ -83,11 +96,14 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	while (++i < number_elements(s, c))
 	{
-		start = start_of_element(start, s, c);
-		arr[i] = copy(s + start, strlen_to_sep(start, s, c));
+		if (!(start == 0 && s[0] != c && i == 0))
+			start = start_of_element(start, s, c);
+		arr[i] = copy_string(s + start, c);
 		if (!arr[i])
+		{
+			free_all(arr);
 			return (NULL);
-		start += strlen_to_sep(start, s, c);
+		}
 	}
 	arr[i] = NULL;
 	return (arr);

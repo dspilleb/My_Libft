@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dan <dan@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 16:57:52 by dan               #+#    #+#             */
-/*   Updated: 2022/10/01 18:42:56 by dan              ###   ########.fr       */
+/*   Updated: 2022/10/16 15:16:00 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,14 @@ void	*ft_calloc(size_t nmemb, size_t size)
 
 	if (nmemb > 2147483647 || size > 2147483647)
 		return (NULL);
-	i = -1;
+	i = 0;
 	s = (char *)malloc(nmemb * size);
 	if (!s)
 		return (NULL);
-	while (++i < nmemb * size)
+	while (i < nmemb * size)
+	{
 		s[i] = 0;
+		i++;
+	}
 	return (s);
 }

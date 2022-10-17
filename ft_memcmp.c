@@ -3,35 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dan <dan@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dspilleb <dspilleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 11:49:27 by dan               #+#    #+#             */
-/*   Updated: 2022/10/01 20:47:30 by dan              ###   ########.fr       */
+/*   Updated: 2022/10/14 16:19:28 by dspilleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_abs(int c)
-{
-	if (c < 0)
-		c *= -1;
-	return (c);
-}
-
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	size_t		i;
-	const char	*str1;
-	const char	*str2;
+	unsigned char	*str1;
+	unsigned char	*str2;
 
-	str1 = s1;
-	str2 = s2;
-	i = 0;
-	while (str1[i] == str2[i] && i < n)
-		i++;
-	if (i != n)
-		return (ft_abs(str1[i]) - ft_abs(str2[i]));
-	else
-		return (0);
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
+	while (0 < n)
+	{
+		if (*str1 != *str2)
+			return (*str1 - *str2);
+		str1++;
+		str2++;
+		n--;
+	}
+	return (0);
 }
