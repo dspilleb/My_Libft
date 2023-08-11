@@ -1,5 +1,10 @@
-# My_Libft
-Premier projet de l'école 19
+<h1 align="center">
+	📖 Libft
+</h1>
+<p align="center">
+	<b><i>First project of school 19.</i></b><br>
+</p>
+## 💡 About the project
 
-This project aims to make you code in C a library of usual functions
-that you will be able to use for your next projects.
+> _This project aims to make you code in C a library of usual functions
+that you will be able to use for your next projects._
